@@ -4,6 +4,12 @@
     <title>articles</title>
   </head>
   <body>
-    <h1>Articles list heree</h1>
+    <h1>Articles list</h1>
+    {% for article in articles %}
+    <h4>{{article.title}}</h4>
+    <h4>{{article.body}}</h4>
+    <h4>{{article.date}}</h4>
+    <br /><br />
+    {% endfor %}
   </body>
 </html>
