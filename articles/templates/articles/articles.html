@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>articles</title>
-  </head>
-  <body>
-    <h1>Articles list</h1>
-    {% for article in articles %}
-    <h4>{{article.title}}</h4>
-    <h4>{{article.body}}</h4>
-    <h4>{{article.date}}</h4>
-    <br /><br />
-    {% endfor %}
-  </body>
-</html>
+{% extends 'base_layout.html' %} {% block content %}
+
+<h1>Articles list</h1>
+<div>
+  {% for article in articles %}
+  <h4>{{article.title}}</h4>
+  <p>{{article.body_snippet}}</p>
+  <h4>{{article.date}}</h4>
+  <br /><br />
+  {% endfor %}
+</div>
+{% endblock %}
