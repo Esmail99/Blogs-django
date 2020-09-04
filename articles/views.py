@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Article
+from django.contrib.auth.decorators import login_required
+from . import forms
 
 
 def articles_list(request):
@@ -10,3 +12,17 @@ def articles_list(request):
 def article_details(request, slug):
     article = Article.objects.get(slug=slug)
     return render(request, 'articles/article_details.html', {'article': article})
+
+
+@login_required
+def articles_create(request):
+    if request.method == 'POST':
+        form = forms.CreateArticle(request.POST)
+        if form.is_valid():
+            userToBeSaved = form.save(commit=False)
+            userToBeSaved.author = request.user
+            userToBeSaved.save()
+            return redirect('articles:list')
+    else:
+        form = forms.CreateArticle()
+    return render(request, 'articles/article_create.html', {'form': form})
