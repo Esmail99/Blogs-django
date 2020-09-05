@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from articles import views as articles_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls')),
     path('accounts/', include('accounts.urls')),
-    path('', views.root),
-    path('about', views.about),
+    path('', articles_views.articles_list, name='home'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

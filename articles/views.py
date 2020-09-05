@@ -22,7 +22,7 @@ def articles_create(request):
             userToBeSaved = form.save(commit=False)
             userToBeSaved.author = request.user
             userToBeSaved.save()
-            return redirect('articles:list')
+            return redirect('home')
     else:
         form = forms.CreateArticle()
     return render(request, 'articles/article_create.html', {'form': form})
